@@ -1,0 +1,165 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Constellation Dark Esoteric Design System */
+
+@layer base {
+  :root {
+    /* Core Dark Palette */
+    --void: 240 6% 8%;
+    --abyss: 240 8% 12%;
+    --shadow: 240 6% 16%;
+    --obsidian: 240 5% 20%;
+    --slate: 240 4% 28%;
+    --mist: 240 6% 65%;
+    --silver: 240 4% 85%;
+    --pearl: 240 8% 95%;
+
+    /* Mystical Accents */
+    --cosmic-purple: 270 85% 70%;
+    --cosmic-purple-dim: 270 45% 35%;
+    --ethereal-blue: 210 100% 78%;
+    --ethereal-blue-dim: 210 55% 45%;
+    --astral-cyan: 180 88% 80%;
+    --astral-cyan-dim: 180 55% 50%;
+    --void-glow: 270 100% 85%;
+    
+    /* Semantic Colors */
+    --background: var(--void);
+    --foreground: var(--pearl);
+    --card: var(--abyss);
+    --card-foreground: var(--silver);
+    --popover: var(--shadow);
+    --popover-foreground: var(--pearl);
+    --primary: var(--cosmic-purple);
+    --primary-foreground: var(--void);
+    --primary-dim: var(--cosmic-purple-dim);
+    --secondary: var(--obsidian);
+    --secondary-foreground: var(--silver);
+    --muted: var(--slate);
+    --muted-foreground: var(--mist);
+    --accent: var(--ethereal-blue);
+    --accent-foreground: var(--void);
+    --accent-dim: var(--ethereal-blue-dim);
+    --destructive: 0 75% 60%;
+    --destructive-foreground: var(--pearl);
+    --border: var(--obsidian);
+    --input: var(--shadow);
+    --ring: var(--cosmic-purple);
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(var(--cosmic-purple)) 0%, hsl(var(--ethereal-blue)) 100%);
+    --gradient-void: linear-gradient(180deg, hsl(var(--void)) 0%, hsl(var(--abyss)) 100%);
+    --gradient-ethereal: linear-gradient(45deg, hsl(var(--ethereal-blue)) 0%, hsl(var(--astral-cyan)) 100%);
+    --gradient-neural: radial-gradient(circle at center, hsl(var(--cosmic-purple) / 0.3) 0%, transparent 70%);
+
+    /* Shadows & Glows */
+    --shadow-void: 0 4px 32px hsl(var(--void) / 0.8);
+    --shadow-cosmic: 0 0 40px hsl(var(--cosmic-purple) / 0.4);
+    --shadow-ethereal: 0 0 30px hsl(var(--ethereal-blue) / 0.3);
+    --glow-neural: 0 0 20px hsl(var(--void-glow) / 0.6);
+
+    /* Typography */
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Inter Variable', sans-serif;
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-neural: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: var(--gradient-void);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  /* Neural Glow Effect */
+  .neural-glow {
+    @apply relative;
+  }
+  
+  .neural-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500;
+    background: var(--gradient-neural);
+    filter: blur(20px);
+  }
+  
+  .neural-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Glass Morphism Cards */
+  .glass-card {
+    @apply backdrop-blur-xl border border-white/10;
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--shadow)) 100%);
+    box-shadow: var(--shadow-void);
+  }
+
+  /* Cosmic Button */
+  .btn-cosmic {
+    @apply relative overflow-hidden px-8 py-3 rounded-xl font-medium transition-all duration-300;
+    background: var(--gradient-cosmic);
+    box-shadow: var(--shadow-cosmic);
+  }
+  
+  .btn-cosmic:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-cosmic), var(--glow-neural);
+  }
+
+  /* Neural Input */
+  .neural-input {
+    @apply w-full px-4 py-3 rounded-xl border border-white/10 transition-all duration-300;
+    background: hsl(var(--input));
+    color: hsl(var(--foreground));
+  }
+  
+  .neural-input:focus {
+    @apply outline-none ring-2;
+    ring-color: hsl(var(--cosmic-purple) / 0.5);
+    border-color: hsl(var(--cosmic-purple));
+    box-shadow: var(--shadow-ethereal);
+  }
+
+  /* Constellation Animation */
+  .constellation-bg {
+    @apply fixed inset-0 -z-10 opacity-30;
+    background: radial-gradient(circle at 20% 50%, hsl(var(--cosmic-purple) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(var(--ethereal-blue) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, hsl(var(--astral-cyan) / 0.1) 0%, transparent 50%);
+  }
+
+  /* Tag Chips */
+  .tag-chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium transition-all duration-200;
+    background: hsl(var(--cosmic-purple) / 0.2);
+    color: hsl(var(--cosmic-purple));
+    border: 1px solid hsl(var(--cosmic-purple) / 0.3);
+  }
+  
+  .tag-chip:hover {
+    @apply scale-105;
+    background: hsl(var(--cosmic-purple) / 0.3);
+  }
+}
